@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Friends</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/name_input.css') }}"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- linking a javascript file -->
+    <!-- <script type="text/javascript" src="{{ url_for('static', filename='js/my_script.js') }}"></script> -->
+</head>
+    <body>
+        <div class="container">
+            <!-- {{ all_friends }} -->
+            <h1>Friends!</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Friend since</th>
+                    </tr>
+                </thead>
+                {% for friend in all_friends: %}
+                <tbody>
+                    <tr>
+                        <td>{{ friend['id'] }}</td>
+                        <td>{{ friend['name'] }}</td>
+                        <td>{{ friend['age'] }}</td>
+                        <td>{{ friend['created_at'] }}</td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+            <hr>
+            <hr>
+            <!-- with all the data we can then construct a more structured output -->
+            <h2>Add a Friend:</h2>
+            <form action='/friends' method='POST'>
+                <label for="name">Name:<input type="text" name="name" id="name"></label>
+                <label for="age">Age:<input type="text" name="age" id="age"></label>
+                <input type="submit" value="Add">
+            </form>
+        </div>   
+    </body>
+
+</html>
